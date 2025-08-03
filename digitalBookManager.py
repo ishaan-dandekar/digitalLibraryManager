@@ -1,5 +1,5 @@
 import json
-from datetime import datetime, timedelta
+from datetime import datetime
 
 
 class Person:
@@ -14,7 +14,7 @@ class Person:
 
 
 class Student(Person):
-    
+
     def __init__(self, user_id, name):
         super().__init__(user_id, name)
         self.user_type = "Student"
@@ -309,28 +309,6 @@ class LibraryManager:
             print(
                 f"ISBN: {book.isbn} | Title: {book.title} | Author: {book.author} | Available: {book.available_count}/{book.total_count}")
 
-    def list_overdue_books(self):
-        # List books that are overdue
-        current_date = datetime.now()
-        overdue_limit = timedelta(days=14)  # 14 days limit
-
-        print("\n--- Overdue Books ---")
-        overdue_found = False
-
-        for user in self.users.values():
-            for i, isbn in enumerate(user.borrowed_books):
-                borrow_date = datetime.strptime(user.borrow_dates[i], "%Y-%m-%d")
-                if current_date - borrow_date > overdue_limit:
-                    book = self.books[isbn]
-                    days_overdue = (current_date - borrow_date).days - 14
-                    print(f"User: {user.name} (ID: {user.user_id}) | Book: {book.title} | Days overdue: {days_overdue}")
-                    overdue_found = True
-
-        if not overdue_found:
-            print("No overdue books!")
-
-        input("\nPress Enter to continue...")
-
     # Lambda function for filtering
     filter_available_books = lambda self: [book for book in self.books.values() if book.available_count > 0]
 
@@ -344,8 +322,7 @@ class LibraryManager:
             print("5. Display User Info")
             print("6. Display Book Info")
             print("7. Search Books")
-            print("8. List Overdue Books")
-            print("9. List Available Books")
+            print("8. List Available Books")
             print("0. Exit")
 
             try:
@@ -367,8 +344,6 @@ class LibraryManager:
                     case 7:
                         self.search_books()
                     case 8:
-                        self.list_overdue_books()
-                    case 9:
                         available_books = self.filter_available_books()
                         print(f"\n--- Available Books ({len(available_books)}) ---")
                         for book in available_books:
@@ -395,14 +370,14 @@ if __name__ == "__main__":
 DEMONSTRATION OF PYTHON CONCEPTS USED:
 
 • Variables, input(), print():
-  - Variables: user_id, name, isbn, title, author, choice, penalty, days_overdue, etc.
+  - Variables: user_id, name, isbn, title, author, choice, etc.
   - input(): Used throughout for user interaction (user_id = int(input("Enter user ID: ")))
-  - print(): Used for displaying information, messages, and penalty calculations
+  - print(): Used for displaying information and messages
 
 • Data Types (int, float, str, bool):
-  - int: user_id, choice, count, penalty, days_overdue, year calculations
-  - str: name, isbn, title, author, dates, error messages, validation messages
-  - bool: is_valid, overdue_found (used in conditionals and validation)
+  - int: user_id, choice, count, year calculations
+  - str: name, isbn, title, author, dates, error messages
+  - bool: Used in conditionals and validation
   - float: Not explicitly used but datetime calculations involve float precision
 
 • Collections (list, tuple, set, dict):
@@ -412,9 +387,8 @@ DEMONSTRATION OF PYTHON CONCEPTS USED:
   - set: Not explicitly used but concept applied in unique ISBN/ID validation
 
 • Conditionals (if, elif, else):
-  - Used throughout: user type checking, book availability, penalty calculations
+  - Used throughout: user type checking, book availability
   - ID validation: if len(str(user_id)) == 8: elif len(str(user_id)) == 3: else:
-  - Penalty logic: if days_borrowed > 14: if penalty > 0: else:
   - Year calculation: if year_diff == 0: elif year_diff == 1: etc.
 
 • Match-Case (Python 3.10+):
@@ -424,15 +398,14 @@ DEMONSTRATION OF PYTHON CONCEPTS USED:
 
 • Loops (for, while, break, continue):
   - while: Main program loop (while True:) for continuous operation
-  - for: Iterating through books, users, borrowed books, overdue calculations
+  - for: Iterating through books, users, borrowed books
   - break: Exiting main loop when choice == 0
   - continue: Implicit in exception handling and validation flows
 
 • Functions (def, return, default arguments):
   - def: All methods defined with def keyword for modular programming
-  - return: Used in calculation methods (_calculate_year, _get_branch, _validate_student_id)
+  - return: Used in calculation methods (_calculate_year, _get_branch)
   - Default arguments: Book.__init__(self, isbn, title, author, total_count=1)
-  - Validation functions: _validate_student_id returns tuple (bool, str)
 
 • Lambda functions:
   - filter_available_books = lambda self: [book for book in self.books.values() if book.available_count > 0]
@@ -446,8 +419,6 @@ DEMONSTRATION OF PYTHON CONCEPTS USED:
 
 • Date and Time Operations:
   - datetime.now() for current timestamps
-  - datetime.strptime() for string to date conversion
-  - timedelta() for date arithmetic and overdue calculations
   - String formatting with strftime() for date storage
 
 • File I/O and JSON:
@@ -460,14 +431,13 @@ DEMONSTRATION OF PYTHON CONCEPTS USED:
   - String slicing for ID parsing: str(user_id)[:2], str(user_id)[2]
   - String methods: .lower(), .get() for case-insensitive operations
   - String formatting: f-strings for dynamic message generation
-  - String validation and error message construction
 
 • OOP Concepts:
   - Class: Person, Student, Faculty, Book, LibraryManager classes
   - Object: Instances of users and books with state and behavior
-  - Constructor (__init__): All classes have constructors with parameter validation
+  - Constructor (__init__): All classes have constructors
   - self: Used in all instance methods for object reference
-  - Encapsulation: Private methods with underscore (_calculate_year, _get_branch, _validate_student_id)
+  - Encapsulation: Private methods with underscore (_calculate_year, _get_branch)
 
 • Inheritance:
   - Single Inheritance: Student(Person), Faculty(Person)
@@ -490,13 +460,11 @@ DEMONSTRATION OF PYTHON CONCEPTS USED:
 • Data Validation and Business Logic:
   - Multi-layer validation: format, range, business rules
   - ID structure validation with specific error messages
-  - Penalty calculation with grace periods and rates
   - Inventory management with availability tracking
   - Referential integrity between users and books
 
 • Algorithm Implementation:
   - Search algorithms: linear search through collections
-  - Date arithmetic: calculating overdue days and penalties
   - Data synchronization: maintaining consistency between memory and files
   - State management: tracking borrowing, returns, and history
 
