@@ -1,9 +1,169 @@
 [
   {
-    "id": 24102075,
-    "name": "s",
+    "id": 24110001,
+    "name": "Aarav Sharma",
+    "borrowed_books": ["978-0134685991"],
+    "borrow_dates": ["2025-07-28"],
+    "history": [],
+    "return_dates": []
+  },
+  {
+    "id": 24210002,
+    "name": "Priya Patel",
     "borrowed_books": [],
     "borrow_dates": [],
+    "history": ["978-0321356680"],
+    "return_dates": ["2025-07-25"]
+  },
+  {
+    "id": 24311003,
+    "name": "Arjun Kumar",
+    "borrowed_books": ["978-0132350884", "978-0262033848"],
+    "borrow_dates": ["2025-07-30", "2025-08-01"],
+    "history": [],
+    "return_dates": []
+  },
+  {
+    "id": 24412004,
+    "name": "Ananya Singh",
+    "borrowed_books": [],
+    "borrow_dates": [],
+    "history": [],
+    "return_dates": []
+  },
+  {
+    "id": 23120005,
+    "name": "Rohit Agarwal",
+    "borrowed_books": ["978-0596009205"],
+    "borrow_dates": ["2025-07-26"],
+    "history": ["978-0134685991", "978-1449344672"],
+    "return_dates": ["2025-07-20", "2025-07-22"]
+  },
+  {
+    "id": 23221006,
+    "name": "Kavya Reddy",
+    "borrowed_books": ["978-1449344672"],
+    "borrow_dates": ["2025-08-02"],
+    "history": [],
+    "return_dates": []
+  },
+  {
+    "id": 23312007,
+    "name": "Vikram Gupta",
+    "borrowed_books": [],
+    "borrow_dates": [],
+    "history": ["978-0262033848"],
+    "return_dates": ["2025-07-18"]
+  },
+  {
+    "id": 23410008,
+    "name": "Sneha Joshi",
+    "borrowed_books": ["978-0321545145", "978-0134757711"],
+    "borrow_dates": ["2025-07-29", "2025-08-01"],
+    "history": [],
+    "return_dates": []
+  },
+  {
+    "id": 22130009,
+    "name": "Karan Mehta",
+    "borrowed_books": [],
+    "borrow_dates": [],
+    "history": ["978-0596009205", "978-0321545145"],
+    "return_dates": ["2025-07-15", "2025-07-19"]
+  },
+  {
+    "id": 22231010,
+    "name": "Riya Verma",
+    "borrowed_books": ["978-0131103627"],
+    "borrow_dates": ["2025-07-31"],
+    "history": ["978-0134757711"],
+    "return_dates": ["2025-07-24"]
+  },
+  {
+    "id": 22311011,
+    "name": "Aditya Chopra",
+    "borrowed_books": ["978-0134494272"],
+    "borrow_dates": ["2025-08-02"],
+    "history": [],
+    "return_dates": []
+  },
+  {
+    "id": 22420012,
+    "name": "Pooja Nair",
+    "borrowed_books": [],
+    "borrow_dates": [],
+    "history": ["978-0131103627", "978-0134494272"],
+    "return_dates": ["2025-07-16", "2025-07-21"]
+  },
+  {
+    "id": 21140013,
+    "name": "Siddharth Rao",
+    "borrowed_books": ["978-0201633610"],
+    "borrow_dates": ["2025-07-27"],
+    "history": ["978-0262033848", "978-0596009205"],
+    "return_dates": ["2025-07-10", "2025-07-14"]
+  },
+  {
+    "id": 21241014,
+    "name": "Ishita Bansal",
+    "borrowed_books": [],
+    "borrow_dates": [],
+    "history": ["978-0201633610"],
+    "return_dates": ["2025-07-23"]
+  },
+  {
+    "id": 21321015,
+    "name": "Rahul Malhotra",
+    "borrowed_books": ["978-0470128701"],
+    "borrow_dates": ["2025-08-01"],
+    "history": [],
+    "return_dates": []
+  },
+  {
+    "id": 21422016,
+    "name": "Nandini Saxena",
+    "borrowed_books": [],
+    "borrow_dates": [],
+    "history": ["978-0470128701"],
+    "return_dates": ["2025-07-17"]
+  },
+  {
+    "id": 101,
+    "name": "Dr. Rajesh Kumar",
+    "borrowed_books": ["978-0321356680", "978-0262033848"],
+    "borrow_dates": ["2025-07-25", "2025-07-28"],
+    "history": [],
+    "return_dates": []
+  },
+  {
+    "id": 102,
+    "name": "Prof. Meera Iyer",
+    "borrowed_books": [],
+    "borrow_dates": [],
+    "history": ["978-0134685991"],
+    "return_dates": ["2025-07-20"]
+  },
+  {
+    "id": 103,
+    "name": "Dr. Amit Tiwari",
+    "borrowed_books": ["978-0596009205"],
+    "borrow_dates": ["2025-07-30"],
+    "history": ["978-0321545145"],
+    "return_dates": ["2025-07-15"]
+  },
+  {
+    "id": 104,
+    "name": "Prof. Sunita Devi",
+    "borrowed_books": [],
+    "borrow_dates": [],
+    "history": [],
+    "return_dates": []
+  },
+  {
+    "id": 105,
+    "name": "Dr. Vikash Pandey",
+    "borrowed_books": ["978-0131103627"],
+    "borrow_dates": ["2025-08-02"],
     "history": [],
     "return_dates": []
   }
