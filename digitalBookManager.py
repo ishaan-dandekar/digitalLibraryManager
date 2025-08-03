@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 
 
 class Person:
-    """Base class for all library users"""
 
     def __init__(self, user_id, name):
         self.user_id = user_id
@@ -15,8 +14,7 @@ class Person:
 
 
 class Student(Person):
-    """Student class inheriting from Person"""
-
+    
     def __init__(self, user_id, name):
         super().__init__(user_id, name)
         self.user_type = "Student"
@@ -52,7 +50,6 @@ class Student(Person):
 
 
 class Faculty(Person):
-    """Faculty class inheriting from Person"""
 
     def __init__(self, user_id, name):
         super().__init__(user_id, name)
@@ -60,7 +57,6 @@ class Faculty(Person):
 
 
 class Book:
-    """Book class to manage book information"""
 
     def __init__(self, isbn, title, author, total_count=1):
         self.isbn = isbn
@@ -72,7 +68,6 @@ class Book:
 
 
 class LibraryManager:
-    """Main library management system"""
 
     def __init__(self):
         self.users = {}
@@ -80,7 +75,6 @@ class LibraryManager:
         self.load_data()
 
     def load_data(self):
-        """Load data from JSON files"""
         try:
             with open('users.json', 'r') as f:
                 users_data = json.load(f)
@@ -111,7 +105,7 @@ class LibraryManager:
             pass
 
     def save_data(self):
-        """Save data to JSON files"""
+        #to save data toJSON files
         users_data = []
         for user in self.users.values():
             users_data.append({
@@ -159,7 +153,7 @@ class LibraryManager:
         self.save_data()
 
     def add_book(self):
-        """Add a new book to the system"""
+        #to add a new book to the system
         isbn = input("Enter ISBN: ")
         title = input("Enter title: ")
         author = input("Enter author: ")
@@ -233,9 +227,9 @@ class LibraryManager:
         book.available_count += 1
         book.borrowed_by.remove(user_id)
 
-        book_index = user.borrowed_books.index(isbn)
+        #book_index = user.borrowed_books.index(isbn)
         user.borrowed_books.remove(isbn)
-        borrow_date = user.borrow_dates.pop(book_index)
+        #borrow_date = user.borrow_dates.pop(book_index)
 
         # Add to history
         return_date = datetime.now().strftime("%Y-%m-%d")
@@ -246,7 +240,7 @@ class LibraryManager:
         self.save_data()
 
     def display_user_info(self):
-        """Display user information"""
+        #Display user information
         user_id = int(input("Enter user ID: "))
 
         if user_id not in self.users:
@@ -273,7 +267,7 @@ class LibraryManager:
         input("\nPress Enter to continue...")
 
     def display_book_info(self):
-        """Display book information"""
+        #Display book information
         isbn = input("Enter book ISBN: ")
 
         if isbn not in self.books:
@@ -298,7 +292,7 @@ class LibraryManager:
         input("\nPress Enter to continue...")
 
     def search_books(self):
-        """Search books by title or author"""
+        #Search books by title or author
         query = input("Enter title or author to search: ").lower()
         found_books = []
 
@@ -316,7 +310,7 @@ class LibraryManager:
                 f"ISBN: {book.isbn} | Title: {book.title} | Author: {book.author} | Available: {book.available_count}/{book.total_count}")
 
     def list_overdue_books(self):
-        """List books that are overdue"""
+        # List books that are overdue
         current_date = datetime.now()
         overdue_limit = timedelta(days=14)  # 14 days limit
 
@@ -341,7 +335,6 @@ class LibraryManager:
     filter_available_books = lambda self: [book for book in self.books.values() if book.available_count > 0]
 
     def run(self):
-        """Main program loop"""
         while True:
             print("\n=== Digital Library Management System ===")
             print("1. Add User")
