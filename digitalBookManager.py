@@ -8,7 +8,6 @@ class Person:
         self.user_id = user_id
         self.name = name
         self.borrowed_books = []
-        self.history = []
 
 
 class Student(Person):
@@ -84,7 +83,6 @@ class LibraryManager:
                         user = Faculty(user_data['id'], user_data['name'])
 
                     user.borrowed_books = user_data.get('borrowed_books', [])
-                    user.history = user_data.get('history', [])
                     self.users[user.user_id] = user
         except FileNotFoundError:
             pass
@@ -107,8 +105,7 @@ class LibraryManager:
             users_data.append({
                 'id': user.user_id,
                 'name': user.name,
-                'borrowed_books': user.borrowed_books,
-                'history': user.history
+                'borrowed_books': user.borrowed_books
             })
 
         with open('users.json', 'w') as f:
@@ -241,8 +238,6 @@ class LibraryManager:
         book.borrowed_by.remove(user_id)
         user.borrowed_books.remove(isbn)
 
-        user.history.append(isbn)
-
         print(f"Book '{book.title}' returned by {user.name}")
         self.save_data()
 
@@ -277,7 +272,6 @@ class LibraryManager:
             else:
                 print(f"  - Book with ISBN {isbn} (Book details not found)")
 
-        print(f"Total books borrowed in history: {len(user.history)}")
         input("\nPress Enter to continue...")
 
     def display_book_info(self):

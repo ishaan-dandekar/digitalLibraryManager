@@ -1,191 +1,145 @@
 [
   {
     "id": 24110001,
-    "name": "Aarav Sharma",
-    "borrowed_books": [],
-    "history": [
-      "978-0134685991"
+    "name": "Arjun Sharma",
+    "borrowed_books": [
+      "9780134685991",
+      "9781491946008"
     ]
   },
   {
-    "id": 24210002,
+    "id": 24120012,
     "name": "Priya Patel",
-    "borrowed_books": [],
-    "history": [
-      "978-0321356680"
-    ]
-  },
-  {
-    "id": 24311003,
-    "name": "Arjun Kumar",
     "borrowed_books": [
-      "978-0262033848"
-    ],
-    "history": [
-      "978-0132350884"
+      "9780596517748"
     ]
   },
   {
-    "id": 24412004,
-    "name": "Ananya Singh",
-    "borrowed_books": [],
-    "history": []
+    "id": 24130020,
+    "name": "Rohan Singh",
+    "borrowed_books": []
   },
   {
-    "id": 23120005,
-    "name": "Rohit Agarwal",
+    "id": 24140002,
+    "name": "Sneha Kumar",
     "borrowed_books": [
-      "978-0596009205"
-    ],
-    "history": [
-      "978-0134685991",
-      "978-1449344672"
+      "9781617294136",
+      "9780262033848"
     ]
   },
   {
-    "id": 23221006,
-    "name": "Kavya Reddy",
+    "id": 23110011,
+    "name": "Vikram Mehta",
     "borrowed_books": [
-      "978-1449344672"
-    ],
-    "history": []
-  },
-  {
-    "id": 23312007,
-    "name": "Vikram Gupta",
-    "borrowed_books": [],
-    "history": [
-      "978-0262033848"
+      "9780134494166"
     ]
   },
   {
-    "id": 23410008,
-    "name": "Sneha Joshi",
+    "id": 23120021,
+    "name": "Ananya Joshi",
+    "borrowed_books": []
+  },
+  {
+    "id": 23130010,
+    "name": "Karan Agarwal",
     "borrowed_books": [
-      "978-0321545145",
-      "978-0134757711"
-    ],
-    "history": []
-  },
-  {
-    "id": 22130009,
-    "name": "Karan Mehta",
-    "borrowed_books": [],
-    "history": [
-      "978-0596009205",
-      "978-0321545145"
+      "9781449355739"
     ]
   },
   {
-    "id": 22231010,
-    "name": "Riya Verma",
+    "id": 23140000,
+    "name": "Isha Gupta",
     "borrowed_books": [
-      "978-0131103627"
-    ],
-    "history": [
-      "978-0134757711"
+      "9780134494164",
+      "9781491954393"
     ]
   },
   {
-    "id": 22311011,
-    "name": "Aditya Chopra",
+    "id": 22110012,
+    "name": "Aditya Rao",
+    "borrowed_books": []
+  },
+  {
+    "id": 22120001,
+    "name": "Neha Desai",
     "borrowed_books": [
-      "978-0134494272"
-    ],
-    "history": []
-  },
-  {
-    "id": 22420012,
-    "name": "Pooja Nair",
-    "borrowed_books": [],
-    "history": [
-      "978-0131103627",
-      "978-0134494272"
+      "9781617295263"
     ]
   },
   {
-    "id": 21140013,
-    "name": "Siddharth Rao",
+    "id": 22130022,
+    "name": "Rahul Verma",
     "borrowed_books": [
-      "978-0201633610"
-    ],
-    "history": [
-      "978-0262033848",
-      "978-0596009205"
+      "9780321563842",
+      "9781449373320"
     ]
   },
   {
-    "id": 21241014,
-    "name": "Ishita Bansal",
-    "borrowed_books": [],
-    "history": [
-      "978-0201633610"
-    ]
+    "id": 22140011,
+    "name": "Kavya Iyer",
+    "borrowed_books": []
   },
   {
-    "id": 21321015,
-    "name": "Rahul Malhotra",
+    "id": 21110000,
+    "name": "Siddharth Nair",
     "borrowed_books": [
-      "978-0470128701"
-    ],
-    "history": []
+      "9780134494315"
+    ]
   },
   {
-    "id": 21422016,
-    "name": "Nandini Saxena",
-    "borrowed_books": [],
-    "history": [
-      "978-0470128701"
+    "id": 21120010,
+    "name": "Riya Sharma",
+    "borrowed_books": []
+  },
+  {
+    "id": 21130002,
+    "name": "Ayush Tiwari",
+    "borrowed_books": [
+      "9781491950296"
+    ]
+  },
+  {
+    "id": 21140021,
+    "name": "Meera Chopra",
+    "borrowed_books": [
+      "9780596809485"
     ]
   },
   {
     "id": 101,
     "name": "Dr. Rajesh Kumar",
     "borrowed_books": [
-      "978-0321356680",
-      "978-0262033848"
-    ],
-    "history": []
+      "9780262033848",
+      "9781617294136",
+      "9780134685991"
+    ]
   },
   {
     "id": 102,
-    "name": "Prof. Meera Iyer",
-    "borrowed_books": [],
-    "history": [
-      "978-0134685991"
+    "name": "Prof. Sunita Singh",
+    "borrowed_books": [
+      "9781449355739",
+      "9780321563842"
     ]
   },
   {
     "id": 103,
-    "name": "Dr. Amit Tiwari",
-    "borrowed_books": [
-      "978-0596009205"
-    ],
-    "history": [
-      "978-0321545145"
-    ]
+    "name": "Dr. Amit Patel",
+    "borrowed_books": []
   },
   {
     "id": 104,
-    "name": "Prof. Sunita Devi",
-    "borrowed_books": [],
-    "history": []
-  },
-  {
-    "id": 105,
-    "name": "Dr. Vikash Pandey",
+    "name": "Prof. Lakshmi Iyer",
     "borrowed_books": [
-      "978-0131103627"
-    ],
-    "history": []
+      "9781491946008",
+      "9780596517748",
+      "9781449373320",
+      "9780134494166"
+    ]
   },
   {
     "id": 24102075,
     "name": "Ishaan",
-    "borrowed_books": [
-      "978-0132350884",
-      "978-0201896831"
-    ],
-    "history": []
+    "borrowed_books": []
   }
 ]

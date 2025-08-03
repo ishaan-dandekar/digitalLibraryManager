@@ -1,191 +1,242 @@
 [
   {
-    "isbn": "978-0134685991",
+    "isbn": "9780134685991",
     "title": "Effective Java",
     "author": "Joshua Bloch",
-    "total_count": 8,
-    "available_count": 7,
-    "borrowed_by": [
-      102
-    ]
-  },
-  {
-    "isbn": "978-0321356680",
-    "title": "Effective C++",
-    "author": "Scott Meyers",
-    "total_count": 6,
-    "available_count": 5,
-    "borrowed_by": [
-      101
-    ]
-  },
-  {
-    "isbn": "978-0132350884",
-    "title": "Clean Code",
-    "author": "Robert C. Martin",
-    "total_count": 10,
-    "available_count": 9,
-    "borrowed_by": [
-      24102075
-    ]
-  },
-  {
-    "isbn": "978-0262033848",
-    "title": "Introduction to Algorithms",
-    "author": "Thomas H. Cormen",
-    "total_count": 12,
-    "available_count": 10,
-    "borrowed_by": [
-      24311003,
-      101
-    ]
-  },
-  {
-    "isbn": "978-0596009205",
-    "title": "Head First Design Patterns",
-    "author": "Eric Freeman",
     "total_count": 7,
     "available_count": 5,
-    "borrowed_by": [
-      23120005,
-      103
-    ]
+    "borrowed_by": []
   },
   {
-    "isbn": "978-1449344672",
+    "isbn": "9781491946008",
+    "title": "Fluent Python",
+    "author": "Luciano Ramalho",
+    "total_count": 5,
+    "available_count": 3,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9780596517748",
+    "title": "JavaScript: The Good Parts",
+    "author": "Douglas Crockford",
+    "total_count": 8,
+    "available_count": 6,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9781617294136",
+    "title": "Spring in Action",
+    "author": "Craig Walls",
+    "total_count": 6,
+    "available_count": 4,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9780262033848",
+    "title": "Introduction to Algorithms",
+    "author": "Thomas H. Cormen",
+    "total_count": 9,
+    "available_count": 7,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9780134494166",
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "total_count": 6,
+    "available_count": 4,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9781449355739",
     "title": "Learning Python",
     "author": "Mark Lutz",
-    "total_count": 9,
-    "available_count": 8,
-    "borrowed_by": [
-      23221006
-    ]
+    "total_count": 7,
+    "available_count": 5,
+    "borrowed_by": []
   },
   {
-    "isbn": "978-0321545145",
+    "isbn": "9780134494164",
+    "title": "The Pragmatic Programmer",
+    "author": "David Thomas",
+    "total_count": 4,
+    "available_count": 3,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9781491954393",
+    "title": "Learning React",
+    "author": "Alex Banks",
+    "total_count": 5,
+    "available_count": 4,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9781617295263",
+    "title": "Node.js in Action",
+    "author": "Mike Cantelon",
+    "total_count": 3,
+    "available_count": 2,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9780321563842",
+    "title": "Design Patterns",
+    "author": "Erich Gamma",
+    "total_count": 8,
+    "available_count": 6,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9781449373320",
+    "title": "Designing Data-Intensive Applications",
+    "author": "Martin Kleppmann",
+    "total_count": 6,
+    "available_count": 4,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9780134494315",
+    "title": "Computer Networks",
+    "author": "Andrew S. Tanenbaum",
+    "total_count": 7,
+    "available_count": 6,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9781491950296",
+    "title": "Programming Pearls",
+    "author": "Jon Bentley",
+    "total_count": 4,
+    "available_count": 3,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9780596809485",
+    "title": "Beautiful Code",
+    "author": "Andy Oram",
+    "total_count": 3,
+    "available_count": 2,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9780134052311",
     "title": "Database System Concepts",
     "author": "Abraham Silberschatz",
     "total_count": 8,
-    "available_count": 7,
-    "borrowed_by": [
-      23410008
-    ]
-  },
-  {
-    "isbn": "978-0134757711",
-    "title": "Computer Networks",
-    "author": "Andrew S. Tanenbaum",
-    "total_count": 6,
-    "available_count": 5,
-    "borrowed_by": [
-      23410008
-    ]
-  },
-  {
-    "isbn": "978-0131103627",
-    "title": "The C Programming Language",
-    "author": "Brian W. Kernighan",
-    "total_count": 8,
-    "available_count": 6,
-    "borrowed_by": [
-      22231010,
-      105
-    ]
-  },
-  {
-    "isbn": "978-0134494272",
-    "title": "Operating System Concepts",
-    "author": "Abraham Silberschatz",
-    "total_count": 10,
-    "available_count": 9,
-    "borrowed_by": [
-      22311011
-    ]
-  },
-  {
-    "isbn": "978-0201633610",
-    "title": "Design Patterns",
-    "author": "Gang of Four",
-    "total_count": 5,
-    "available_count": 4,
-    "borrowed_by": [
-      21140013
-    ]
-  },
-  {
-    "isbn": "978-0470128701",
-    "title": "Software Engineering",
-    "author": "Ian Sommerville",
-    "total_count": 7,
-    "available_count": 6,
-    "borrowed_by": [
-      21321015
-    ]
-  },
-  {
-    "isbn": "978-0136083641",
-    "title": "Computer Organization and Design",
-    "author": "David A. Patterson",
-    "total_count": 6,
-    "available_count": 6,
-    "borrowed_by": []
-  },
-  {
-    "isbn": "978-0072967758",
-    "title": "Artificial Intelligence: A Modern Approach",
-    "author": "Stuart Russell",
-    "total_count": 8,
     "available_count": 8,
     "borrowed_by": []
   },
   {
-    "isbn": "978-0133761313",
-    "title": "Web Development with Node and Express",
-    "author": "Ethan Brown",
+    "isbn": "9781449331818",
+    "title": "Learning SQL",
+    "author": "Alan Beaulieu",
     "total_count": 5,
     "available_count": 5,
     "borrowed_by": []
   },
   {
-    "isbn": "978-1449331818",
-    "title": "Learning JavaScript",
-    "author": "Ethan Brown",
-    "total_count": 7,
-    "available_count": 7,
-    "borrowed_by": []
-  },
-  {
-    "isbn": "978-0596517748",
-    "title": "JavaScript: The Good Parts",
-    "author": "Douglas Crockford",
-    "total_count": 6,
-    "available_count": 6,
-    "borrowed_by": []
-  },
-  {
-    "isbn": "978-0321486813",
-    "title": "Compilers: Principles, Techniques and Tools",
-    "author": "Alfred V. Aho",
+    "isbn": "9780134757599",
+    "title": "Refactoring",
+    "author": "Martin Fowler",
     "total_count": 4,
     "available_count": 4,
     "borrowed_by": []
   },
   {
-    "isbn": "978-0130353481",
-    "title": "Advanced Programming in the UNIX Environment",
-    "author": "W. Richard Stevens",
+    "isbn": "9781617293290",
+    "title": "Microservices Patterns",
+    "author": "Chris Richardson",
+    "total_count": 3,
+    "available_count": 3,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9780135166307",
+    "title": "Operating System Concepts",
+    "author": "Abraham Silberschatz",
+    "total_count": 9,
+    "available_count": 9,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9781492040347",
+    "title": "Learning Spark",
+    "author": "Holden Karau",
+    "total_count": 2,
+    "available_count": 2,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9781449367619",
+    "title": "MongoDB: The Definitive Guide",
+    "author": "Kristina Chodorow",
+    "total_count": 6,
+    "available_count": 6,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9781118008188",
+    "title": "Professional JavaScript",
+    "author": "Nicholas C. Zakas",
+    "total_count": 7,
+    "available_count": 7,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9780132350884",
+    "title": "Clean Architecture",
+    "author": "Robert C. Martin",
     "total_count": 5,
     "available_count": 5,
     "borrowed_by": []
   },
   {
-    "isbn": "978-0201896831",
-    "title": "The Art of Computer Programming",
-    "author": "Donald E. Knuth",
+    "isbn": "9781449358063",
+    "title": "High Performance MySQL",
+    "author": "Baron Schwartz",
+    "total_count": 4,
+    "available_count": 4,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9781617294945",
+    "title": "Kafka: The Definitive Guide",
+    "author": "Neha Narkhede",
     "total_count": 3,
+    "available_count": 3,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9780134757681",
+    "title": "Agile Software Development",
+    "author": "Robert C. Martin",
+    "total_count": 2,
     "available_count": 2,
-    "borrowed_by": [
-      24102075
-    ]
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9781492051367",
+    "title": "Site Reliability Engineering",
+    "author": "Niall Richard Murphy",
+    "total_count": 8,
+    "available_count": 8,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9781449369415",
+    "title": "Hands-On Machine Learning",
+    "author": "Aur\u00e9lien G\u00e9ron",
+    "total_count": 9,
+    "available_count": 9,
+    "borrowed_by": []
+  },
+  {
+    "isbn": "9781449363765",
+    "title": "Docker: Up & Running",
+    "author": "Karl Matthias",
+    "total_count": 6,
+    "available_count": 6,
+    "borrowed_by": []
   }
 ]
