@@ -183,7 +183,9 @@
     "title": "The Art of Computer Programming",
     "author": "Donald E. Knuth",
     "total_count": 3,
-    "available_count": 3,
-    "borrowed_by": []
+    "available_count": 2,
+    "borrowed_by": [
+      24102075
+    ]
   }
 ]

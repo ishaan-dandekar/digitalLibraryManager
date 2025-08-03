@@ -18,8 +18,8 @@ class Student(Person):
         self.user_type = "Student"
         self.max_books = 3
 
+    # dont mess with this logic - took me a while to get it working ~Ishaan
     def get_year(self):
-        """Calculate year based on admission year from ID"""
         current_year = datetime.now().year
         admission_year = 2000 + int(str(self.user_id)[:2])
         year_diff = current_year - admission_year
@@ -36,13 +36,11 @@ class Student(Person):
             return "Graduate"
 
     def get_branch(self):
-        """Get branch based on 3rd digit of ID"""
         branch_map = {1: "Comps", 2: "IT", 3: "AIML", 4: "DS"}
         branch_digit = int(str(self.user_id)[2])
         return branch_map.get(branch_digit, "Unknown")
 
     def get_division(self):
-        """Get division based on 4th digit of ID"""
         division_map = {0: "A", 1: "B", 2: "C"}
         division_digit = int(str(self.user_id)[3])
         return division_map.get(division_digit, "Unknown")
@@ -103,7 +101,6 @@ class LibraryManager:
             pass
 
     def save_data(self):
-        # to save data toJSON files
         users_data = []
         for user in self.users.values():
             users_data.append({
@@ -131,7 +128,6 @@ class LibraryManager:
             json.dump(books_data, f, indent=2)
 
     def add_user(self):
-        """Add a new user to the system"""
         try:
             user_id = int(input("Enter user ID: "))
         except ValueError:
@@ -154,7 +150,6 @@ class LibraryManager:
         self.save_data()
 
     def add_book(self):
-        # to add a new book to the system
         isbn = input("Enter ISBN: ")
         title = input("Enter title: ")
         author = input("Enter author: ")
@@ -177,7 +172,6 @@ class LibraryManager:
         self.save_data()
 
     def issue_book(self):
-        """Issue a book to a user"""
         try:
             user_id = int(input("Enter user ID: "))
         except ValueError:
@@ -197,6 +191,8 @@ class LibraryManager:
         book = self.books[isbn]
         user = self.users[user_id]
 
+        # Please dont touch this part - the book issuing logic is sensitive! Thanks :) ~Arya
+        # Don't worry i got it backed up to a git repo now
         if book.available_count <= 0:
             print("Book not available!")
             return
@@ -205,12 +201,10 @@ class LibraryManager:
             print("User already has this book!")
             return
 
-        # Check borrowing limit
         if len(user.borrowed_books) >= user.max_books:
             print(f"Cannot issue book! {user.user_type} borrowing limit ({user.max_books} books) reached.")
             return
 
-        # Issue the book
         book.available_count -= 1
         book.borrowed_by.append(user_id)
         user.borrowed_books.append(isbn)
@@ -219,7 +213,6 @@ class LibraryManager:
         self.save_data()
 
     def return_book(self):
-        """Return a book from a user"""
         try:
             user_id = int(input("Enter user ID: "))
         except ValueError:
@@ -243,19 +236,16 @@ class LibraryManager:
             print("User doesn't have this book!")
             return
 
-        # Return the book
         book.available_count += 1
         book.borrowed_by.remove(user_id)
         user.borrowed_books.remove(isbn)
 
-        # Add to history
         user.history.append(isbn)
 
         print(f"Book '{book.title}' returned by {user.name}")
         self.save_data()
 
     def display_user_info(self):
-        # Display user information
         try:
             user_id = int(input("Enter user ID: "))
         except ValueError:
@@ -290,7 +280,6 @@ class LibraryManager:
         input("\nPress Enter to continue...")
 
     def display_book_info(self):
-        # Display book information
         isbn = input("Enter book ISBN: ")
 
         if isbn not in self.books:
@@ -315,7 +304,6 @@ class LibraryManager:
         input("\nPress Enter to continue...")
 
     def search_books(self):
-        # Search books by title or author
         query = input("Enter title or author to search: ").lower()
         found_books = []
 
@@ -333,7 +321,6 @@ class LibraryManager:
                 f"ISBN: {book.isbn} | Title: {book.title} | Author: {book.author} | Available: {book.available_count}/{book.total_count}")
 
     def list_issued_books(self):
-        """List all books currently issued to users"""
         print("\n--- Currently Issued Books ---")
         issued_found = False
 
@@ -355,7 +342,6 @@ class LibraryManager:
 
         input("\nPress Enter to continue...")
 
-    # Lambda function for filtering
     filter_available_books = lambda self: [book for book in self.books.values() if book.available_count > 0]
 
     def run(self):
@@ -410,7 +396,6 @@ class LibraryManager:
                 print(f"An error occurred: {e}")
 
 
-# Run the program
 if __name__ == "__main__":
     library = LibraryManager()
     library.run()
