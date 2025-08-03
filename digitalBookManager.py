@@ -24,16 +24,17 @@ class Student(Person):
         admission_year = 2000 + int(str(self.user_id)[:2])
         year_diff = current_year - admission_year
 
-        if year_diff == 0:
-            return "FE"
-        elif year_diff == 1:
-            return "SE"
-        elif year_diff == 2:
-            return "TE"
-        elif year_diff == 3:
-            return "BE"
-        else:
-            return "Graduate"
+        match year_diff:
+            case 0:
+                return "FE"
+            case 1:
+                return "SE"
+            case 2:
+                return "TE"
+            case 3:
+                return "BE"
+            case _:
+                return "Graduate"
 
     def get_branch(self):
         branch_map = {1: "Comps", 2: "IT", 3: "AIML", 4: "DS"}
@@ -95,7 +96,7 @@ class LibraryManager:
                     book = Book(book_data['isbn'], book_data['title'],
                                 book_data['author'], book_data['total_count'])
                     book.available_count = book_data.get('available_count', book.total_count)
-                    book.borrowed_by = book_data.get('borrowed_by', [])
+                    book.borrowed_by = book_data.get('borrowed_tby', [])
                     self.books[book.isbn] = book
         except FileNotFoundError:
             pass
