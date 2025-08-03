@@ -87,11 +87,8 @@ class LibraryManager:
                 for user_data in users_data:
                     if len(str(user_data['id'])) == 8:
                         user = Student(user_data['id'], user_data['name'])
-                    elif len(str(user_data['id'])) == 3:
-                        user = Faculty(user_data['id'], user_data['name'])
                     else:
-                        print("Invalid ID")
-                        return
+                        user = Faculty(user_data['id'], user_data['name'])
 
                     user.borrowed_books = user_data.get('borrowed_books', [])
                     user.borrow_dates = user_data.get('borrow_dates', [])
@@ -405,53 +402,120 @@ if __name__ == "__main__":
 DEMONSTRATION OF PYTHON CONCEPTS USED:
 
 • Variables, input(), print():
-  - Variables: user_id, name, isbn, title, author, choice, etc.
+  - Variables: user_id, name, isbn, title, author, choice, penalty, days_overdue, etc.
   - input(): Used throughout for user interaction (user_id = int(input("Enter user ID: ")))
-  - print(): Used for displaying information and messages
+  - print(): Used for displaying information, messages, and penalty calculations
 
 • Data Types (int, float, str, bool):
-  - int: user_id, choice, count, book indices
-  - str: name, isbn, title, author, dates
-  - bool: overdue_found (implicitly used in conditionals)
-  - float: Not explicitly used but could be for late fees
+  - int: user_id, choice, count, penalty, days_overdue, year calculations
+  - str: name, isbn, title, author, dates, error messages, validation messages
+  - bool: is_valid, overdue_found (used in conditionals and validation)
+  - float: Not explicitly used but datetime calculations involve float precision
 
 • Collections (list, tuple, set, dict):
   - list: borrowed_books, borrow_dates, history, return_dates, found_books
-  - dict: users{}, books{}, branch_map{}, division_map{}
-  - tuple: Used in datetime operations
-  - set: Not explicitly used but could be for unique ISBNs
+  - dict: users{}, books{}, branch_map{}, division_map{} for mapping and storage
+  - tuple: Used in datetime operations and validation return values
+  - set: Not explicitly used but concept applied in unique ISBN/ID validation
 
 • Conditionals (if, elif, else):
-  - Used throughout: user type checking, book availability, menu choices
-  - Example: if len(str(user_id)) == 8: elif len(str(user_id)) == 3: else:
+  - Used throughout: user type checking, book availability, penalty calculations
+  - ID validation: if len(str(user_id)) == 8: elif len(str(user_id)) == 3: else:
+  - Penalty logic: if days_borrowed > 14: if penalty > 0: else:
+  - Year calculation: if year_diff == 0: elif year_diff == 1: etc.
+
+• Match-Case (Python 3.10+):
+  - Modern switch-case implementation in main menu
+  - match choice: case 1: case 2: case _: for default handling
+  - Cleaner than traditional elif chains
 
 • Loops (for, while, break, continue):
-  - while: Main program loop (while True:)
-  - for: Iterating through books, users, borrowed books
+  - while: Main program loop (while True:) for continuous operation
+  - for: Iterating through books, users, borrowed books, overdue calculations
   - break: Exiting main loop when choice == 0
-  - continue: Implicit in exception handling
+  - continue: Implicit in exception handling and validation flows
 
 • Functions (def, return, default arguments):
-  - def: All methods defined with def keyword
-  - return: Used in calculation methods (_calculate_year, _get_branch)
+  - def: All methods defined with def keyword for modular programming
+  - return: Used in calculation methods (_calculate_year, _get_branch, _validate_student_id)
   - Default arguments: Book.__init__(self, isbn, title, author, total_count=1)
+  - Validation functions: _validate_student_id returns tuple (bool, str)
 
 • Lambda functions:
   - filter_available_books = lambda self: [book for book in self.books.values() if book.available_count > 0]
+  - Functional programming concept for filtering collections
+
+• Exception Handling:
+  - try-except blocks for file operations (FileNotFoundError)
+  - ValueError handling for invalid input conversions
+  - General Exception catching for unexpected errors
+  - Graceful degradation without system crashes
+
+• Date and Time Operations:
+  - datetime.now() for current timestamps
+  - datetime.strptime() for string to date conversion
+  - timedelta() for date arithmetic and overdue calculations
+  - String formatting with strftime() for date storage
+
+• File I/O and JSON:
+  - json.load() and json.dump() for data persistence
+  - File handling with 'r' and 'w' modes
+  - with statements for proper file resource management
+  - Error handling for missing files
+
+• String Operations:
+  - String slicing for ID parsing: str(user_id)[:2], str(user_id)[2]
+  - String methods: .lower(), .get() for case-insensitive operations
+  - String formatting: f-strings for dynamic message generation
+  - String validation and error message construction
 
 • OOP Concepts:
   - Class: Person, Student, Faculty, Book, LibraryManager classes
-  - Object: Instances of users and books
-  - Constructor (__init__): All classes have constructors
-  - self: Used in all instance methods
-  - Encapsulation: Private methods with underscore (_calculate_year, _get_branch)
+  - Object: Instances of users and books with state and behavior
+  - Constructor (__init__): All classes have constructors with parameter validation
+  - self: Used in all instance methods for object reference
+  - Encapsulation: Private methods with underscore (_calculate_year, _get_branch, _validate_student_id)
 
 • Inheritance:
   - Single Inheritance: Student(Person), Faculty(Person)
-  - super(): Used to call parent constructor
+  - super(): Used to call parent constructor for proper initialization
   - Method Overriding: Student and Faculty override Person behavior
+  - Inherited attributes: All Person attributes available in subclasses
 
 • Polymorphism:
-  - Method overriding in Student class (constructor behavior)
+  - Method overriding in Student class (constructor adds academic details)
   - Different behavior for Student vs Faculty objects
+  - isinstance() used for runtime type checking
+  - Same interface (Person) with different implementations
+
+• Abstraction:
+  - Base Person class provides common interface
+  - LibraryManager abstracts complex operations into simple methods
+  - Public methods hide internal implementation details
+  - Clear separation of concerns between classes
+
+• Data Validation and Business Logic:
+  - Multi-layer validation: format, range, business rules
+  - ID structure validation with specific error messages
+  - Penalty calculation with grace periods and rates
+  - Inventory management with availability tracking
+  - Referential integrity between users and books
+
+• Algorithm Implementation:
+  - Search algorithms: linear search through collections
+  - Date arithmetic: calculating overdue days and penalties
+  - Data synchronization: maintaining consistency between memory and files
+  - State management: tracking borrowing, returns, and history
+
+• Error Handling Patterns:
+  - Validation before processing
+  - Early returns for error conditions
+  - Specific error messages for different failure modes
+  - Graceful handling of missing data with defaults
+
+• Design Patterns:
+  - Repository pattern: JSON files as data repositories
+  - Factory pattern: Creating different user types based on ID
+  - Observer pattern: Automatic saving after state changes
+  - Command pattern: Menu-driven operations
 """
