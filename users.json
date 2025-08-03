@@ -274,5 +274,17 @@
     ],
     "history": [],
     "return_dates": []
+  },
+  {
+    "id": 24102075,
+    "name": "Ishaan",
+    "borrowed_books": [
+      "978-0132350884"
+    ],
+    "borrow_dates": [
+      "2025-08-03"
+    ],
+    "history": [],
+    "return_dates": []
   }
 ]

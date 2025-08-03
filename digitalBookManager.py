@@ -8,9 +8,7 @@ class Person:
         self.user_id = user_id
         self.name = name
         self.borrowed_books = []
-        self.borrow_dates = []
         self.history = []
-        self.return_dates = []
 
 
 class Student(Person):
@@ -18,11 +16,10 @@ class Student(Person):
     def __init__(self, user_id, name):
         super().__init__(user_id, name)
         self.user_type = "Student"
-        self.year = self._calculate_year()
-        self.branch = self._get_branch()
-        self.division = self._get_division()
+        self.max_books = 3
 
-    def _calculate_year(self):
+    def get_year(self):
+        """Calculate year based on admission year from ID"""
         current_year = datetime.now().year
         admission_year = 2000 + int(str(self.user_id)[:2])
         year_diff = current_year - admission_year
@@ -38,12 +35,14 @@ class Student(Person):
         else:
             return "Graduate"
 
-    def _get_branch(self):
+    def get_branch(self):
+        """Get branch based on 3rd digit of ID"""
         branch_map = {1: "Comps", 2: "IT", 3: "AIML", 4: "DS"}
         branch_digit = int(str(self.user_id)[2])
         return branch_map.get(branch_digit, "Unknown")
 
-    def _get_division(self):
+    def get_division(self):
+        """Get division based on 4th digit of ID"""
         division_map = {0: "A", 1: "B", 2: "C"}
         division_digit = int(str(self.user_id)[3])
         return division_map.get(division_digit, "Unknown")
@@ -54,6 +53,7 @@ class Faculty(Person):
     def __init__(self, user_id, name):
         super().__init__(user_id, name)
         self.user_type = "Faculty"
+        self.max_books = 5
 
 
 class Book:
@@ -85,9 +85,7 @@ class LibraryManager:
                         user = Faculty(user_data['id'], user_data['name'])
 
                     user.borrowed_books = user_data.get('borrowed_books', [])
-                    user.borrow_dates = user_data.get('borrow_dates', [])
                     user.history = user_data.get('history', [])
-                    user.return_dates = user_data.get('return_dates', [])
                     self.users[user.user_id] = user
         except FileNotFoundError:
             pass
@@ -105,16 +103,14 @@ class LibraryManager:
             pass
 
     def save_data(self):
-        #to save data toJSON files
+        # to save data toJSON files
         users_data = []
         for user in self.users.values():
             users_data.append({
                 'id': user.user_id,
                 'name': user.name,
                 'borrowed_books': user.borrowed_books,
-                'borrow_dates': user.borrow_dates,
-                'history': user.history,
-                'return_dates': user.return_dates
+                'history': user.history
             })
 
         with open('users.json', 'w') as f:
@@ -136,43 +132,58 @@ class LibraryManager:
 
     def add_user(self):
         """Add a new user to the system"""
-        user_id = int(input("Enter user ID: "))
+        try:
+            user_id = int(input("Enter user ID: "))
+        except ValueError:
+            print("Invalid user ID! Please enter a numeric ID.")
+            return
+
         name = input("Enter name: ")
 
         if len(str(user_id)) == 8:
             user = Student(user_id, name)
-            print(f"Student added: {name} ({user.year} {user.branch} {user.division})")
+            print(f"Student added: {name} ({user.get_year()} {user.get_branch()} {user.get_division()})")
         elif len(str(user_id)) == 3:
             user = Faculty(user_id, name)
             print(f"Faculty added: {name}")
         else:
-            print("Invalid ID format!")
+            print("Invalid ID format! Student IDs must be 8 digits, Faculty IDs must be 3 digits.")
             return
 
         self.users[user_id] = user
         self.save_data()
 
     def add_book(self):
-        #to add a new book to the system
+        # to add a new book to the system
         isbn = input("Enter ISBN: ")
         title = input("Enter title: ")
         author = input("Enter author: ")
-        count = int(input("Enter number of copies: "))
+
+        try:
+            count = int(input("Enter number of copies: "))
+        except ValueError:
+            print("Invalid number of copies! Please enter a valid number.")
+            return
 
         if isbn in self.books:
             self.books[isbn].total_count += count
             self.books[isbn].available_count += count
-            print(f"Updated book count for '{title}'")
+            print(f"Updated book count for '{title}' - Added {count} copies")
         else:
             book = Book(isbn, title, author, count)
             self.books[isbn] = book
-            print(f"Book '{title}' added successfully!")
+            print(f"Book '{title}' added successfully with {count} copies!")
 
         self.save_data()
 
     def issue_book(self):
         """Issue a book to a user"""
-        user_id = int(input("Enter user ID: "))
+        try:
+            user_id = int(input("Enter user ID: "))
+        except ValueError:
+            print("Invalid user ID! Please enter a numeric ID.")
+            return
+
         isbn = input("Enter book ISBN: ")
 
         if user_id not in self.users:
@@ -194,18 +205,27 @@ class LibraryManager:
             print("User already has this book!")
             return
 
+        # Check borrowing limit
+        if len(user.borrowed_books) >= user.max_books:
+            print(f"Cannot issue book! {user.user_type} borrowing limit ({user.max_books} books) reached.")
+            return
+
         # Issue the book
         book.available_count -= 1
         book.borrowed_by.append(user_id)
         user.borrowed_books.append(isbn)
-        user.borrow_dates.append(datetime.now().strftime("%Y-%m-%d"))
 
         print(f"Book '{book.title}' issued to {user.name}")
         self.save_data()
 
     def return_book(self):
         """Return a book from a user"""
-        user_id = int(input("Enter user ID: "))
+        try:
+            user_id = int(input("Enter user ID: "))
+        except ValueError:
+            print("Invalid user ID! Please enter a numeric ID.")
+            return
+
         isbn = input("Enter book ISBN: ")
 
         if user_id not in self.users:
@@ -226,22 +246,21 @@ class LibraryManager:
         # Return the book
         book.available_count += 1
         book.borrowed_by.remove(user_id)
-
-        #book_index = user.borrowed_books.index(isbn)
         user.borrowed_books.remove(isbn)
-        #borrow_date = user.borrow_dates.pop(book_index)
 
         # Add to history
-        return_date = datetime.now().strftime("%Y-%m-%d")
         user.history.append(isbn)
-        user.return_dates.append(return_date)
 
         print(f"Book '{book.title}' returned by {user.name}")
         self.save_data()
 
     def display_user_info(self):
-        #Display user information
-        user_id = int(input("Enter user ID: "))
+        # Display user information
+        try:
+            user_id = int(input("Enter user ID: "))
+        except ValueError:
+            print("Invalid user ID! Please enter a numeric ID.")
+            return
 
         if user_id not in self.users:
             print("User not found!")
@@ -254,20 +273,24 @@ class LibraryManager:
         print(f"Type: {user.user_type}")
 
         if isinstance(user, Student):
-            print(f"Year: {user.year}")
-            print(f"Branch: {user.branch}")
-            print(f"Division: {user.division}")
+            print(f"Year: {user.get_year()}")
+            print(f"Branch: {user.get_branch()}")
+            print(f"Division: {user.get_division()}")
 
-        print(f"Currently borrowed books: {len(user.borrowed_books)}")
-        for i, isbn in enumerate(user.borrowed_books):
-            book = self.books[isbn]
-            print(f"  - {book.title} (borrowed on: {user.borrow_dates[i]})")
+        print(f"Borrowing limit: {user.max_books} books")
+        print(f"Currently borrowed books: {len(user.borrowed_books)}/{user.max_books}")
+        for isbn in user.borrowed_books:
+            if isbn in self.books:
+                book = self.books[isbn]
+                print(f"  - {book.title}")
+            else:
+                print(f"  - Book with ISBN {isbn} (Book details not found)")
 
         print(f"Total books borrowed in history: {len(user.history)}")
         input("\nPress Enter to continue...")
 
     def display_book_info(self):
-        #Display book information
+        # Display book information
         isbn = input("Enter book ISBN: ")
 
         if isbn not in self.books:
@@ -292,7 +315,7 @@ class LibraryManager:
         input("\nPress Enter to continue...")
 
     def search_books(self):
-        #Search books by title or author
+        # Search books by title or author
         query = input("Enter title or author to search: ").lower()
         found_books = []
 
@@ -309,6 +332,29 @@ class LibraryManager:
             print(
                 f"ISBN: {book.isbn} | Title: {book.title} | Author: {book.author} | Available: {book.available_count}/{book.total_count}")
 
+    def list_issued_books(self):
+        """List all books currently issued to users"""
+        print("\n--- Currently Issued Books ---")
+        issued_found = False
+
+        for user in self.users.values():
+            if user.borrowed_books:
+                for isbn in user.borrowed_books:
+                    if isbn in self.books:
+                        book = self.books[isbn]
+                        print(
+                            f"Book: {book.title} | Author: {book.author} | Borrowed by: {user.name} (ID: {user.user_id})")
+                        issued_found = True
+                    else:
+                        print(
+                            f"Book with ISBN {isbn} | Borrowed by: {user.name} (ID: {user.user_id}) | (Book details not found)")
+                        issued_found = True
+
+        if not issued_found:
+            print("No books are currently issued!")
+
+        input("\nPress Enter to continue...")
+
     # Lambda function for filtering
     filter_available_books = lambda self: [book for book in self.books.values() if book.available_count > 0]
 
@@ -323,6 +369,7 @@ class LibraryManager:
             print("6. Display Book Info")
             print("7. Search Books")
             print("8. List Available Books")
+            print("9. List Issued Books")
             print("0. Exit")
 
             try:
@@ -349,6 +396,8 @@ class LibraryManager:
                         for book in available_books:
                             print(f"{book.title} by {book.author} - {book.available_count} copies available")
                         input("\nPress Enter to continue...")
+                    case 9:
+                        self.list_issued_books()
                     case 0:
                         print("Thank you for using the Library Management System!")
                         break
@@ -365,118 +414,3 @@ class LibraryManager:
 if __name__ == "__main__":
     library = LibraryManager()
     library.run()
-
-"""
-DEMONSTRATION OF PYTHON CONCEPTS USED:
-
-• Variables, input(), print():
-  - Variables: user_id, name, isbn, title, author, choice, etc.
-  - input(): Used throughout for user interaction (user_id = int(input("Enter user ID: ")))
-  - print(): Used for displaying information and messages
-
-• Data Types (int, float, str, bool):
-  - int: user_id, choice, count, year calculations
-  - str: name, isbn, title, author, dates, error messages
-  - bool: Used in conditionals and validation
-  - float: Not explicitly used but datetime calculations involve float precision
-
-• Collections (list, tuple, set, dict):
-  - list: borrowed_books, borrow_dates, history, return_dates, found_books
-  - dict: users{}, books{}, branch_map{}, division_map{} for mapping and storage
-  - tuple: Used in datetime operations and validation return values
-  - set: Not explicitly used but concept applied in unique ISBN/ID validation
-
-• Conditionals (if, elif, else):
-  - Used throughout: user type checking, book availability
-  - ID validation: if len(str(user_id)) == 8: elif len(str(user_id)) == 3: else:
-  - Year calculation: if year_diff == 0: elif year_diff == 1: etc.
-
-• Match-Case (Python 3.10+):
-  - Modern switch-case implementation in main menu
-  - match choice: case 1: case 2: case _: for default handling
-  - Cleaner than traditional elif chains
-
-• Loops (for, while, break, continue):
-  - while: Main program loop (while True:) for continuous operation
-  - for: Iterating through books, users, borrowed books
-  - break: Exiting main loop when choice == 0
-  - continue: Implicit in exception handling and validation flows
-
-• Functions (def, return, default arguments):
-  - def: All methods defined with def keyword for modular programming
-  - return: Used in calculation methods (_calculate_year, _get_branch)
-  - Default arguments: Book.__init__(self, isbn, title, author, total_count=1)
-
-• Lambda functions:
-  - filter_available_books = lambda self: [book for book in self.books.values() if book.available_count > 0]
-  - Functional programming concept for filtering collections
-
-• Exception Handling:
-  - try-except blocks for file operations (FileNotFoundError)
-  - ValueError handling for invalid input conversions
-  - General Exception catching for unexpected errors
-  - Graceful degradation without system crashes
-
-• Date and Time Operations:
-  - datetime.now() for current timestamps
-  - String formatting with strftime() for date storage
-
-• File I/O and JSON:
-  - json.load() and json.dump() for data persistence
-  - File handling with 'r' and 'w' modes
-  - with statements for proper file resource management
-  - Error handling for missing files
-
-• String Operations:
-  - String slicing for ID parsing: str(user_id)[:2], str(user_id)[2]
-  - String methods: .lower(), .get() for case-insensitive operations
-  - String formatting: f-strings for dynamic message generation
-
-• OOP Concepts:
-  - Class: Person, Student, Faculty, Book, LibraryManager classes
-  - Object: Instances of users and books with state and behavior
-  - Constructor (__init__): All classes have constructors
-  - self: Used in all instance methods for object reference
-  - Encapsulation: Private methods with underscore (_calculate_year, _get_branch)
-
-• Inheritance:
-  - Single Inheritance: Student(Person), Faculty(Person)
-  - super(): Used to call parent constructor for proper initialization
-  - Method Overriding: Student and Faculty override Person behavior
-  - Inherited attributes: All Person attributes available in subclasses
-
-• Polymorphism:
-  - Method overriding in Student class (constructor adds academic details)
-  - Different behavior for Student vs Faculty objects
-  - isinstance() used for runtime type checking
-  - Same interface (Person) with different implementations
-
-• Abstraction:
-  - Base Person class provides common interface
-  - LibraryManager abstracts complex operations into simple methods
-  - Public methods hide internal implementation details
-  - Clear separation of concerns between classes
-
-• Data Validation and Business Logic:
-  - Multi-layer validation: format, range, business rules
-  - ID structure validation with specific error messages
-  - Inventory management with availability tracking
-  - Referential integrity between users and books
-
-• Algorithm Implementation:
-  - Search algorithms: linear search through collections
-  - Data synchronization: maintaining consistency between memory and files
-  - State management: tracking borrowing, returns, and history
-
-• Error Handling Patterns:
-  - Validation before processing
-  - Early returns for error conditions
-  - Specific error messages for different failure modes
-  - Graceful handling of missing data with defaults
-
-• Design Patterns:
-  - Repository pattern: JSON files as data repositories
-  - Factory pattern: Creating different user types based on ID
-  - Observer pattern: Automatic saving after state changes
-  - Command pattern: Menu-driven operations
-"""

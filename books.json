@@ -24,8 +24,10 @@
     "title": "Clean Code",
     "author": "Robert C. Martin",
     "total_count": 10,
-    "available_count": 10,
-    "borrowed_by": []
+    "available_count": 9,
+    "borrowed_by": [
+      24102075
+    ]
   },
   {
     "isbn": "978-0262033848",
