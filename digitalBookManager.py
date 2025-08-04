@@ -189,7 +189,7 @@ class LibraryManager:
         book = self.books[isbn]
         user = self.users[user_id]
 
-        # Please dont touch this part - the book issuing logic is sensitive! Thanks :) ~Arya
+        # Please dont touch this part, the book issuing logic is sensitive! Thanks :) ~Arya
         # Don't worry i got it backed up to a git repo now
         if book.available_count <= 0:
             print("Book not available!")
