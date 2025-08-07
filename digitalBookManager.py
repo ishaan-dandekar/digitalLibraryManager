@@ -169,6 +169,23 @@ class LibraryManager:
 
         self.save_data()
 
+    def search_books(self):
+        query = input("Enter title or author to search: ").lower()
+        found_books = []
+
+        for book in self.books.values():
+            if query in book.title.lower() or query in book.author.lower():
+                found_books.append(book)
+
+        if not found_books:
+            print("No books found!")
+            return
+
+        print(f"\n--- Search Results ({len(found_books)} books found) ---")
+        for book in found_books:
+            print(
+                f"ISBN: {book.isbn} | Title: {book.title} | Author: {book.author} | Available: {book.available_count}/{book.total_count}")
+    
     def issue_book(self):
         try:
             user_id = int(input("Enter user ID: "))
@@ -297,23 +314,6 @@ class LibraryManager:
                 print(f"  - {user.name} (ID: {user_id})")
 
         input("\nPress Enter to continue...")
-
-    def search_books(self):
-        query = input("Enter title or author to search: ").lower()
-        found_books = []
-
-        for book in self.books.values():
-            if query in book.title.lower() or query in book.author.lower():
-                found_books.append(book)
-
-        if not found_books:
-            print("No books found!")
-            return
-
-        print(f"\n--- Search Results ({len(found_books)} books found) ---")
-        for book in found_books:
-            print(
-                f"ISBN: {book.isbn} | Title: {book.title} | Author: {book.author} | Available: {book.available_count}/{book.total_count}")
 
     def list_issued_books(self):
         print("\n--- Currently Issued Books ---")
